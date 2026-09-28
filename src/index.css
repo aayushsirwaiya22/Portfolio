@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme variables. Every color in the app reads from one of these
+   (via the Tailwind color tokens in tailwind.config.js) so a light/dark
+   toggle only needs to flip data-theme on <html>. */
+:root {
+  --bg: #0b0c0e;
+  --surface: #131519;
+  --surface-light: #1b1e24;
+  --text: #f1f1ee;
+  --text-muted: #9a9ea8;
+  --accent: #c6ff3d;
+  --accent-ink: #0b0c0e;
+  --border: #262a31;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-light: #ecebe6;
+  --text: #141517;
+  --text-muted: #5d616b;
+  --accent: #3d5afe;
+  --accent-ink: #ffffff;
+  --border: #dcdad3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg text-ink antialiased;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Space Grotesk", Inter, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
