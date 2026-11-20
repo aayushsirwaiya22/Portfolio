@@ -155,6 +155,20 @@ h3 {
     background-color: var(--accent-wash);
   }
 
+  /* Brand-mark tile inside a technology chip. Inverts to the accent on hover. */
+  .skill-mark {
+    transition:
+      border-color 200ms ease,
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  .u-chip:hover .skill-mark {
+    border-color: var(--accent-text);
+    background-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
   .u-link {
     transition: color 200ms ease;
   }

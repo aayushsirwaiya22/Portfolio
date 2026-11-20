@@ -55,7 +55,7 @@ export default function Hero() {
   return (
     <section id="home" ref={rootRef} className="pt-28 pb-16 sm:pt-36">
       <Container className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-        <div>
+        <div className="min-w-0">
           <div data-hero>
             <Eyebrow>Full Stack · Frontend · Python · Drupal · Linux</Eyebrow>
           </div>
@@ -95,7 +95,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div data-hero className="relative py-4">
+        <div data-hero className="relative min-w-0 py-4">
           {/* The code window is dressed as an editor: title bar, filename,
               language badge and a status bar. */}
           <div className="overflow-hidden rounded-2xl border border-edge bg-surface shadow-[0_30px_80px_-30px_var(--shadow)]">
@@ -114,12 +114,12 @@ export default function Hero() {
             <pre className="overflow-x-auto p-5 font-mono text-sm leading-7 text-muted">
               <span className="text-accentText">const</span> aayush = {"{"}
               {"\n"}  role: <span className="text-ink">&quot;Full Stack Developer&quot;</span>,
-              {"\n"}  frontend: [<span className="text-ink">&quot;React&quot;</span>, <span className="text-ink">&quot;JavaScript&quot;</span>],
-              {"\n"}  backend: [<span className="text-ink">&quot;Node.js&quot;</span>, <span className="text-ink">&quot;Express&quot;</span>],
-              {"\n"}  scripting: [<span className="text-ink">&quot;Python&quot;</span>],
+              {"\n"}  frontend: [<span className="text-ink">&quot;React&quot;</span>, <span className="text-ink">&quot;Next.js&quot;</span>, <span className="text-ink">&quot;GSAP&quot;</span>],
+              {"\n"}  backend: [<span className="text-ink">&quot;Node.js&quot;</span>, <span className="text-ink">&quot;Django&quot;</span>, <span className="text-ink">&quot;Laravel&quot;</span>],
+              {"\n"}  languages: [<span className="text-ink">&quot;JavaScript&quot;</span>, <span className="text-ink">&quot;Python&quot;</span>, <span className="text-ink">&quot;PHP&quot;</span>],
               {"\n"}  server: <span className="text-ink">&quot;Linux&quot;</span>,
-              {"\n"}  database: [<span className="text-ink">&quot;MongoDB&quot;</span>, <span className="text-ink">&quot;MySQL&quot;</span>],
-              {"\n"}  cms: [<span className="text-ink">&quot;Drupal&quot;</span>, <span className="text-ink">&quot;WordPress&quot;</span>],
+              {"\n"}  database: [<span className="text-ink">&quot;PostgreSQL&quot;</span>, <span className="text-ink">&quot;MongoDB&quot;</span>, <span className="text-ink">&quot;MySQL&quot;</span>],
+              {"\n"}  cms: [<span className="text-ink">&quot;WordPress&quot;</span>, <span className="text-ink">&quot;Elementor&quot;</span>],
               {"\n"}  location: <span className="text-ink">&quot;Indore, IN&quot;</span>
               {"\n"}
               {"}"};
