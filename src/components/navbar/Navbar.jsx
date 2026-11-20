@@ -4,6 +4,7 @@ import { site } from "../../data/site.js";
 import { useTheme } from "../../hooks/useTheme.js";
 import Container from "../common/Container.jsx";
 import Button from "../common/Button.jsx";
+import ScrollProgress from "../common/ScrollProgress.jsx";
 import MobileMenu from "./MobileMenu.jsx";
 
 export default function Navbar() {
@@ -11,11 +12,15 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-edge bg-bg/90 backdrop-blur">
+    <>
+      <header className="sticky top-0 z-50 border-b border-edge bg-[var(--nav-bg)] backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
-        <a href="#home" className="font-display text-lg font-bold text-ink" aria-label={`${site.name}, home`}>
-          {site.name.split(" ")[0].toUpperCase()}
-          <span className="text-accent">.</span>
+        <a
+          href="#home"
+          className="inline-flex min-h-[44px] items-center font-display text-lg font-bold text-ink"
+          aria-label={`${site.name}, home`}
+        >          {site.name.split(" ")[0].toUpperCase()}
+          <span className="text-accentText">.</span>
         </a>
 
         {/* Desktop nav */}
@@ -24,9 +29,12 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-muted transition-colors hover:text-ink"
+                className="u-roll flex min-h-[44px] items-center text-sm text-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accentText"
               >
-                {link.label}
+                <span>{link.label}</span>
+                <span aria-hidden="true" className="text-accentText">
+                  {link.label}
+                </span>
               </a>
             </li>
           ))}
@@ -37,13 +45,15 @@ export default function Navbar() {
             type="button"
             onClick={toggleTheme}
             aria-label="Toggle light and dark theme"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-edge text-ink hover:border-accent"
+            className="group flex h-11 w-11 items-center justify-center rounded-full border border-edge text-ink transition-colors duration-200 hover:border-accentText hover:text-accentText"
           >
-            {theme === "dark" ? "◐" : "◑"}
+            <span className="transition-transform duration-300 group-hover:rotate-180">
+              {theme === "dark" ? "◐" : "◑"}
+            </span>
           </button>
 
           <Button href="#contact" variant="primary" className="hidden md:inline-flex">
-            Let's Talk
+            Let&apos;s Talk
           </Button>
 
           {/* Mobile hamburger */}
@@ -73,7 +83,13 @@ export default function Navbar() {
         </div>
       </Container>
 
+      <ScrollProgress />
+      </header>
+
+      {/* The overlay lives outside the header on purpose: the header's
+          backdrop-blur makes it the containing block for fixed children,
+          which would shrink a full-screen overlay to the header's height. */}
       <MobileMenu isOpen={isMenuOpen} onLinkClick={() => setIsMenuOpen(false)} />
-    </header>
+    </>
   );
 }

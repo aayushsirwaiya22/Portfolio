@@ -2,9 +2,10 @@ import { ensureGsapRegistered, shouldAnimate } from "./gsapSetup.js";
 
 ensureGsapRegistered();
 
-// Project card entrance: card fades up, image settles from a slight zoom and
-// drifts on scroll (parallax). Tolerant of the placeholder (no <img>).
-export function createProjectCardAnimation(
+// Project row entrance: the row fades up, the thumbnail settles from a
+// slight zoom and drifts on scroll (parallax). Tolerant of the placeholder
+// (no <img>).
+export function createProjectRowAnimation(
   element,
   { start = "top 88%" } = {},
 ) {

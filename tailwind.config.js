@@ -10,11 +10,17 @@ export default {
         bg: "var(--bg)",
         surface: "var(--surface)",
         surfaceLight: "var(--surface-light)",
+        surfaceSunken: "var(--surface-sunken)",
         ink: "var(--text)",
         muted: "var(--text-muted)",
         accent: "var(--accent)",
         accentInk: "var(--accent-ink)",
+        // Accent used as text, borders and hairlines — legible on light.
+        accentText: "var(--accent-text)",
+        accentWash: "var(--accent-wash)",
         edge: "var(--border)",
+        edgeStrong: "var(--border-strong)",
+        danger: "var(--error)",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

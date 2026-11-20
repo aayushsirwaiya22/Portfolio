@@ -16,7 +16,7 @@ export default function MobileMenu({ isOpen, onLinkClick }) {
           key={link.href}
           href={link.href}
           onClick={onLinkClick}
-          className="font-display text-4xl text-ink"
+          className="u-slide flex min-h-[48px] items-center font-display text-4xl text-ink"
         >
           {link.label}
         </a>

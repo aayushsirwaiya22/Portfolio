@@ -11,4 +11,6 @@ export const site = {
   resume: "/resume/Aayush-Sirwaiya-Resume.pdf",
   tagline:
     "I build modern, responsive web experiences using React, JavaScript and modern web technologies.",
+  // The one phrase in the tagline that gets the highlighter treatment.
+  taglineHighlight: "web experiences",
 };

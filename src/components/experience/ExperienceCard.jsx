@@ -10,8 +10,8 @@ export default function ExperienceCard({ experience }) {
 
   return (
     <article ref={ref} className="relative pb-14">
-      <span className="absolute -left-[34px] top-2 h-3.5 w-3.5 rounded-full border-2 border-accent bg-bg" />
-      <p className="font-mono text-xs text-accent">{experience.period}</p>
+      <span className="absolute -left-[34px] top-2 h-3.5 w-3.5 rounded-full border-2 border-accentText bg-bg" />
+      <p className="font-mono text-xs text-accentText">{experience.period}</p>
       <h3 className="mt-2 font-display text-2xl text-ink sm:text-3xl">
         {experience.role}
       </h3>
@@ -21,7 +21,7 @@ export default function ExperienceCard({ experience }) {
 
       <ul className="mt-4 max-w-2xl space-y-2 text-muted">
         {experience.points.map((point) => (
-          <li key={point} className="list-disc pl-1 marker:text-accent">
+          <li key={point} className="list-disc pl-1 marker:text-accentText">
             {point}
           </li>
         ))}
@@ -31,7 +31,7 @@ export default function ExperienceCard({ experience }) {
         {experience.tech.map((tech) => (
           <li
             key={tech}
-            className="rounded-full border border-edge bg-surface px-3 py-1 text-xs text-ink"
+            className="u-chip rounded-full border border-edge bg-surfaceLight px-3 py-1 text-xs text-ink"
           >
             {tech}
           </li>

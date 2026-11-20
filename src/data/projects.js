@@ -1,8 +1,12 @@
 // url: null hides the "View Project" button/link until you have a real URL.
+// scope: short label used in the case-file metadata rail.
+// art: which generated plate to draw when there is no screenshot yet.
 export const projects = [
   {
     id: "velora",
     accent: "#6c8cff",
+    scope: "Social platform",
+    art: 0,
     name: "Velora",
     title: "Social Discovery Platform",
     category: "Social / Location / Community Platform",
@@ -19,6 +23,8 @@ export const projects = [
   {
     id: "ucdc",
     accent: "#ffb84d",
+    scope: "Drupal CMS",
+    art: 1,
     name: "UCDC",
     title: "University of California Washington Center",
     category: "Education / Institutional Website",
@@ -35,6 +41,8 @@ export const projects = [
   {
     id: "db-united",
     accent: "#e0a3ff",
+    scope: "B2B commerce",
+    art: 2,
     name: "DB United",
     title: "B2B Luxury Resale Platform",
     category: "B2B / Luxury Resale / E-commerce",
@@ -51,6 +59,8 @@ export const projects = [
   {
     id: "karmeh",
     accent: "#5ee6b8",
+    scope: "Design studio",
+    art: 3,
     name: "KarMeh",
     title: "Design Studio: Interior & Architectural Design",
     category: "Design Studio / Portfolio",

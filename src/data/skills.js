@@ -1,9 +1,9 @@
 export const skillGroups = [
   { title: "Frontend", items: ["React.js", "JavaScript (ES6+)","Typescript", "HTML5", "CSS3", "Tailwind CSS", "Material UI"] },
-  { title: "Backend", items: ["Node.js", "Express.js", "RESTful APIs", "JWT Authentication", "CRUD"] },
+  { title: "Backend", items: ["Node.js", "Express.js", "Python", "RESTful APIs", "JWT Authentication", "CRUD"] },
   { title: "CMS", items: ["Drupal","WordPress","Shopify" ] },
   { title: "Database", items: ["MongoDB", "MySQL"] },
-  { title: "Tools", items: ["Git", "GitHub", "VS Code", "Postman", "npm"] },
+  { title: "Tools", items: ["Git", "GitHub", "Linux", "VS Code", "Postman", "npm"] },
 ];
 
 export const capabilities = [
@@ -18,3 +18,19 @@ export const capabilities = [
 
 // Small looping label list used in the Hero's developer-style visual.
 export const heroStack = ["React","JavaScript", "Node.js", "MongoDB","Express.js","Drupal", "WordPress",];
+
+// Short list used in the scrolling band under the hero.
+export const marqueeItems = [
+  "React",
+  "JavaScript",
+  "Node.js",
+  "Express",
+  "Python",
+  "MongoDB",
+  "MySQL",
+  "Drupal",
+  "WordPress",
+  "Linux",
+  "Tailwind CSS",
+  "REST APIs",
+];

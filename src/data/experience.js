@@ -1,20 +1,5 @@
 export const experience = [
   {
-    id: "ypsilon",
-    period: "Nov 2024 – Apr 2025",
-    role: "Full Stack Developer Intern",
-    company: "Ypsilon IT Solutions Pvt. Ltd.",
-    place: "Indore",
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs", "JWT"],
-    points: [
-      "Developed full-stack web applications using React.js, Node.js, Express.js and MongoDB.",
-      "Built and integrated RESTful APIs and CRUD operations.",
-      "Implemented JWT-based authentication workflows.",
-      "Developed responsive React.js components.",
-      "Took part in Agile ceremonies, code reviews and daily standups.",
-    ],
-  },
-  {
     id: "codernaline",
     period: "Jul 2025 – Present",
     role: "Drupal & Frontend Developer",
@@ -27,6 +12,21 @@ export const experience = [
       "Develop and customize Drupal and WordPress sites from business requirements and design references.",
       "Build responsive, cross-browser interfaces and reusable UI components used across production client projects.",
       "Manage multiple concurrent client projects and coordinate with internal teams to deliver.",
+    ],
+  },
+  {
+    id: "ypsilon",
+    period: "Nov 2024 – Apr 2025",
+    role: "Full Stack Developer Intern",
+    company: "Ypsilon IT Solutions Pvt. Ltd.",
+    place: "Indore",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs", "JWT"],
+    points: [
+      "Developed full-stack web applications using React.js, Node.js, Express.js and MongoDB.",
+      "Built and integrated RESTful APIs and CRUD operations.",
+      "Implemented JWT-based authentication workflows.",
+      "Developed responsive React.js components.",
+      "Took part in Agile ceremonies, code reviews and daily standups.",
     ],
   },
 ];

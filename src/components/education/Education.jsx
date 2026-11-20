@@ -15,7 +15,7 @@ export default function Education() {
         <SectionTitle number="06" eyebrow="Education" title="Education & training." />
 
         <div ref={cardsRef} className="mt-10 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-          <div className="rounded-2xl border border-edge bg-surface p-6">
+          <div className="u-card rounded-2xl border border-edge bg-surface p-6">
             <h3 className="flex flex-wrap items-baseline justify-between gap-2 text-lg font-medium text-ink">
               {education.degree.title}
               <small className="font-mono text-xs font-normal text-muted">
@@ -29,7 +29,7 @@ export default function Education() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-edge bg-surface p-6">
+          <div className="u-card rounded-2xl border border-edge bg-surface p-6">
             <h3 className="text-lg font-medium text-ink">Certifications</h3>
             <ul className="mt-2 space-y-1 text-sm text-muted">
               {education.certifications.map((cert) => (

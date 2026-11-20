@@ -4,29 +4,78 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme variables. Every color in the app reads from one of these
-   (via the Tailwind color tokens in tailwind.config.js) so a light/dark
-   toggle only needs to flip data-theme on <html>. */
+/* ── Theme tokens ────────────────────────────────────────────────────────
+   Every colour in the app reads from one of these, so a light/dark toggle
+   is only ever a `data-theme` swap on <html>.
+
+   The accent deliberately has two roles:
+     --accent       the vivid brand lime. Used for solid fills (buttons,
+                   marks, active states) and always paired with --accent-ink
+                   so it stays legible on either canvas.
+     --accent-text  the same hue pushed dark enough to read as text, a
+                   border or a hairline on a light background.
+   Using one token for both is what made the old light theme unreadable:
+   acid lime as body text on cream is invisible, and the only fix applied
+   there was swapping the brand colour out entirely.
+   ─────────────────────────────────────────────────────────────────────── */
 :root {
+  color-scheme: dark;
+
   --bg: #0b0c0e;
   --surface: #131519;
   --surface-light: #1b1e24;
+  --surface-sunken: #0f1114;
+
   --text: #f1f1ee;
   --text-muted: #9a9ea8;
+
   --accent: #c6ff3d;
   --accent-ink: #0b0c0e;
+  --accent-text: #c6ff3d;
+  --accent-wash: rgba(198, 255, 61, 0.14);
+
   --border: #262a31;
+  --border-strong: #363b45;
+
+  --error: #f87171;
+
+  --accent-glow: rgba(198, 255, 61, 0.35);
+
+  --nav-bg: rgba(11, 12, 14, 0.82);
+  --overlay: rgba(0, 0, 0, 0.72);
+  --shadow: rgba(0, 0, 0, 0.6);
+  --shadow-soft: rgba(0, 0, 0, 0.35);
+  --ghost: rgba(241, 241, 238, 0.07);
 }
 
 :root[data-theme="light"] {
-  --bg: #f6f5f1;
+  color-scheme: light;
+
+  --bg: #f1f1ee;
   --surface: #ffffff;
-  --surface-light: #ecebe6;
-  --text: #141517;
-  --text-muted: #5d616b;
-  --accent: #3d5afe;
-  --accent-ink: #ffffff;
-  --border: #dcdad3;
+  --surface-light: #e2e2da;
+  --surface-sunken: #d8d8cf;
+
+  --text: #111214;
+  --text-muted: #56595f;
+
+  --accent: #c6ff3d;
+  --accent-ink: #101210;
+  --accent-text: #4a6b0f;
+  --accent-wash: rgba(198, 255, 61, 0.3);
+
+  --border: #d6d6ce;
+  --border-strong: #b9b9ae;
+
+  --error: #b3261e;
+
+  --accent-glow: rgba(198, 255, 61, 0.55);
+
+  --nav-bg: rgba(241, 241, 238, 0.85);
+  --overlay: rgba(26, 28, 31, 0.45);
+  --shadow: rgba(17, 18, 20, 0.16);
+  --shadow-soft: rgba(17, 18, 20, 0.08);
+  --ghost: rgba(17, 18, 20, 0.07);
 }
 
 html {
@@ -45,6 +94,249 @@ h3 {
   letter-spacing: -0.02em;
 }
 
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* ── Hover vocabulary ────────────────────────────────────────────────────
+   One shared reaction for every interactive element on the page: the accent
+   colour arrives, the element lifts a couple of pixels, and any arrow slides
+   in the direction it points.
+
+   Lifts use `top` on a relatively positioned element rather than `transform`
+   or `translate`. GSAP owns both of those on every element it animates — it
+   writes an inline `translate: none` — so a CSS lift on `transform` would
+   be silently cancelled on exactly the cards and buttons that animate. `top`
+   is never touched by GSAP, so one rule covers the whole page.
+   ─────────────────────────────────────────────────────────────────────── */
+@layer components {
+  .u-lift {
+    position: relative;
+    transition:
+      top 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 200ms ease,
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  .u-lift:hover {
+    top: -2px;
+  }
+
+  .u-card {
+    position: relative;
+    transition:
+      top 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .u-card:hover {
+    top: -3px;
+    border-color: var(--accent-text);
+    box-shadow: 0 20px 44px -28px var(--shadow);
+  }
+
+  .u-chip {
+    position: relative;
+    transition:
+      top 200ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 200ms ease,
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  .u-chip:hover {
+    top: -1px;
+    border-color: var(--accent-text);
+    background-color: var(--accent-wash);
+  }
+
+  .u-link {
+    transition: color 200ms ease;
+  }
+
+  .u-link:hover {
+    color: var(--accent-text);
+  }
+
+  /* Large text link that steps aside and takes the accent colour. */
+  .u-slide {
+    position: relative;
+    transition:
+      left 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      color 200ms ease;
+  }
+
+  .u-slide:hover {
+    left: 8px;
+    color: var(--accent-text);
+  }
+
+  /* Arrow that slides the way it points: → for forward, ↗ for outward. */
+  .u-arrow,
+  .u-arrow-diag {
+    display: inline-block;
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group:hover .u-arrow {
+    transform: translateX(4px);
+  }
+
+  .group:hover .u-arrow-diag {
+    transform: translate(4px, -4px);
+  }
+
+  /* Rule that wipes in from the left under a link. */
+  .u-wipe {
+    position: relative;
+  }
+
+  .u-wipe::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background-color: var(--accent-text);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .u-wipe:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Label that rolls up and out while its accent twin rolls in. */
+  .u-roll {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+
+  .u-roll > span {
+    display: block;
+    transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .u-roll > span + span {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+  }
+
+  .u-roll:hover > span:first-child {
+    transform: translateY(-100%);
+  }
+
+  .u-roll:hover > span:last-child {
+    transform: translateY(-100%);
+  }
+
+  /* Underline-only form field: the label carries the meaning, the rule
+     carries the focus. */
+  .field-input {
+    width: 100%;
+    margin-top: 0.6rem;
+    border: 0;
+    border-bottom: 1px solid var(--border-strong);
+    background-color: transparent;
+    padding: 0.3rem 0 0.7rem;
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    outline: none;
+    transition:
+      border-color 200ms ease,
+      box-shadow 200ms ease;
+  }
+
+  .field-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  .field-input:focus {
+    border-bottom-color: var(--accent-text);
+    box-shadow: inset 0 -1px 0 0 var(--accent-text);
+  }
+
+  .field-input:focus-visible {
+    outline: 2px solid var(--accent-text);
+    outline-offset: 4px;
+  }
+
+  /* Oversized watermark word — drawn, not filled. */
+  .outline-word {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border-strong);
+  }
+}
+
+/* Blinking terminal caret. The global reduced-motion rule flattens this to a
+   static block, which is still a legible cursor. */
+@keyframes caret-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.caret {
+  display: inline-block;
+  width: 0.45em;
+  height: 1em;
+  transform: translateY(0.14em);
+  background-color: var(--accent-text);
+  animation: caret-blink 1.1s steps(1, end) infinite;
+}
+
+/* Colour only animates while the theme is being swapped, so the change
+   reads as one movement instead of a flicker across every element. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    color 320ms ease,
+    fill 320ms ease,
+    box-shadow 320ms ease !important;
+}
+
+/* Scrolling band of technology names. The list renders twice so the
+   -50% translate loops without a visible seam. */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 42s linear infinite;
+}
+
+.marquee-wrap:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -55,5 +347,27 @@ h3 {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+  }
+  /* Colour feedback stays, movement does not. */
+  .u-lift:hover,
+  .u-card:hover,
+  .u-chip:hover {
+    top: 0;
+  }
+  .u-slide:hover {
+    left: 0;
+  }
+  .group:hover .u-arrow {
+    transform: none;
+  }
+  .group:hover .u-arrow-diag {
+    transform: none;
+  }
+  .u-roll:hover > span:first-child,
+  .u-roll:hover > span:last-child {
+    transform: none;
   }
 }

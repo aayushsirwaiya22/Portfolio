@@ -12,19 +12,19 @@ export default function Button({
   ...rest
 }) {
   const base =
-    "group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border px-6 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+    "group u-lift inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border px-6 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentText";
   const variants = {
-    primary: "border-accent bg-accent text-accentInk hover:opacity-90",
-    secondary: "border-edge text-ink hover:border-accent",
+    primary:
+      "border-accent bg-accent text-accentInk shadow-[0_10px_24px_-18px_var(--shadow)] hover:shadow-[0_18px_36px_-16px_var(--accent-glow)]",
+    secondary:
+      "border-edge bg-transparent text-ink hover:border-accentText hover:bg-accentWash hover:text-accentText",
   };
   const classes = `${base} ${variants[variant]} ${className}`;
 
   const content = (
     <>
       {children}
-      {arrow && (
-        <span className="transition-transform group-hover:translate-x-1">→</span>
-      )}
+      {arrow && <span className="u-arrow">→</span>}
     </>
   );
 

@@ -10,8 +10,12 @@ export default function Skills() {
         <SectionTitle number="03" eyebrow="Technology" title="The stack I work with." />
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {skillGroups.map((group) => (
-            <SkillCard key={group.title} group={group} />
+          {skillGroups.map((group, index) => (
+            <SkillCard
+              key={group.title}
+              group={group}
+              className={index === 0 ? "lg:col-span-2" : ""}
+            />
           ))}
         </div>
       </Container>
