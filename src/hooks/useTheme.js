@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 // Reads any saved preference on first render, then keeps <html data-theme="...">
 // and localStorage in sync whenever the person toggles it. The actual colors
@@ -9,6 +9,12 @@ export function useTheme() {
     return localStorage.getItem("theme") || "dark";
   });
   const swapTimer = useRef(null);
+
+  // Applied before the first paint so the saved theme is never swapped out
+  // from under the intro loader.
+  useLayoutEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
 
   useEffect(() => {
     const root = document.documentElement;

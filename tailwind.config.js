@@ -23,8 +23,14 @@ export default {
         danger: "var(--error)",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
+        // Noto Sans Devanagari sits last in the stack: Inter and Space
+        // Grotesk carry no Devanagari glyphs, so the browser falls through
+        // to it for the Hindi greeting in the boot loader.
+        sans: ["Inter", "Noto Sans Devanagari", "system-ui", "sans-serif"],
+        display: ["Space Grotesk", "Inter", "Noto Sans Devanagari", "system-ui", "sans-serif"],
+        // Caveat carries the greeting in the intro loader. Noto Sans
+        // Devanagari sits behind it because Caveat has no Devanagari glyphs.
+        script: ["Caveat", "Noto Sans Devanagari", "cursive"],
         mono: ["ui-monospace", "Menlo", "monospace"],
       },
     },

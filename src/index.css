@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Caveat:wght@500;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -330,6 +330,102 @@ h3 {
     color 320ms ease,
     fill 320ms ease,
     box-shadow 320ms ease !important;
+}
+
+/* ── Intro loader ────────────────────────────────────────────────────────
+   A full-screen counter that runs 0 → 100 while an arc draws itself in and
+   out, then swaps to a run of greetings before sliding away. It is a fixed
+   overlay on top of the page, so it must outrank the sticky header (z-50)
+   and the mobile menu (z-40).
+
+   The canvas is always the warm near-black of the reference, in both
+   themes: the loader is the one moment the site is not themed, so it reads
+   the same whether the page behind it is dark or light.
+   ─────────────────────────────────────────────────────────────────────── */
+.boot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-color: #0e0e0e;
+  will-change: transform;
+}
+
+.boot-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* The counter block and the greeting block swap places; only one is ever
+   on screen. `data-off` rather than `hidden` so the rule wins over the
+   display value on `.boot-block`. */
+.boot-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.boot-block[data-off="true"] {
+  display: none;
+}
+
+.boot-counter {
+  min-width: 4ch;
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 0.85;
+  text-align: center;
+}
+
+.boot-greeting {
+  color: #e8dcc4;
+  line-height: 1;
+}
+
+.boot-locale {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.boot-tag {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(232, 220, 196, 0.45);
+}
+
+@media (min-width: 640px) {
+  .boot-tag {
+    font-size: 0.625rem;
+    letter-spacing: 0.3em;
+  }
+}
+
+/* The arc turns slowly while the dash offset draws it in and back out. */
+@keyframes boot-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.animate-spin-slow {
+  animation: boot-spin 12s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow {
+    animation: none;
+  }
 }
 
 /* Scrolling band of technology names. The list renders twice so the

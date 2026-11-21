@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { navLinks } from "../../data/navigation.js";
 import { site } from "../../data/site.js";
-import { useTheme } from "../../hooks/useTheme.js";
 import Container from "../common/Container.jsx";
 import Button from "../common/Button.jsx";
 import ScrollProgress from "../common/ScrollProgress.jsx";
 import MobileMenu from "./MobileMenu.jsx";
 
-export default function Navbar() {
+// The theme is owned by MainLayout so the intro loader can read it before
+// the navbar is mounted.
+export default function Navbar({ theme, onToggleTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   return (
     <>
@@ -43,7 +43,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={toggleTheme}
+            onClick={onToggleTheme}
             aria-label="Toggle light and dark theme"
             className="group flex h-11 w-11 items-center justify-center rounded-full border border-edge text-ink transition-colors duration-200 hover:border-accentText hover:text-accentText"
           >
