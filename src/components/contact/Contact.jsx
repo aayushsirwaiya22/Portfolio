@@ -1,6 +1,7 @@
 import { Fragment, useRef, useState } from "react";
 import { site } from "../../data/site.js";
 import { socialLinks } from "../../data/socialLinks.js";
+import { emailJs } from "../../data/contactConfig.js";
 import Container from "../common/Container.jsx";
 import Eyebrow from "../common/Eyebrow.jsx";
 import Button from "../common/Button.jsx";
@@ -104,10 +105,7 @@ export default function Contact() {
     const hasError = Object.values(nextErrors).some(Boolean);
     if (hasError || status === "sending") return;
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    const notifyTemplate = import.meta.env.VITE_EMAILJS_TEMPLATE_NOTIFY;
-    const autoreplyTemplate = import.meta.env.VITE_EMAILJS_TEMPLATE_AUTOREPLY;
+    const { serviceId, publicKey, notifyTemplate, autoreplyTemplate } = emailJs;
     if (!serviceId || !publicKey || !notifyTemplate || !autoreplyTemplate) {
       setStatus("error");
       setNote(
